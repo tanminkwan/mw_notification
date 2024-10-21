@@ -15,8 +15,8 @@ log_filename_env = os.getenv("LOG_FILENAME", "notifications.log")
 seoul_tz = pytz.timezone(timezone_env)
 
 # 로그 파일 설정
-log_dir = "/home/hennry/GitHub/logs"
-#log_dir = "/logs"  # Docker 컨테이너 외부 파일 시스템과 연결될 경로
+#log_dir = "/home/hennry/GitHub/logs"
+log_dir = "/logs"  # Docker 컨테이너 외부 파일 시스템과 연결될 경로
 os.makedirs(log_dir, exist_ok=True)
 
 def get_log_filename():

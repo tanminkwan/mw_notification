@@ -59,7 +59,13 @@ uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 To run the application in a Docker container:
 
 ```bash
-docker run -d -p 8000:8000 -v /path/to/logs:/logs -e LOG_FILENAME=noti.log -e TIMEZONE=Asia/Seoul fastapi-notification-app
+docker run -d -p 8000:8000 -v /home/hennry/GitHub/logs:/logs -e LOG_FILENAME=noti.log -e TIMEZONE=Asia/Seoul fastapi-notification-app
+```
+
+When running the Docker container, you can use the --user option to set the container's user to the current user's UID and GID. This will ensure that any files created inside the container (including log files) are owned by the user who started the Docker container :
+
+```bash
+docker run -d -p 8000:8000 -v /home/hennry/GitHub/logs:/logs -e LOG_FILENAME=noti.log -e TIMEZONE=Asia/Seoul --user $(id -u):$(id -g) fastapi-notification-app
 ```
 
 ### 5. Example Usage
