@@ -67,7 +67,26 @@ When running the Docker container, you can use the --user option to set the cont
 ```bash
 docker run -d -p 8000:8000 -v /home/hennry/GitHub/logs:/logs -e LOG_FILENAME=noti.log -e TIMEZONE=Asia/Seoul --user $(id -u):$(id -g) fastapi-notification-app
 ```
+#### Docker compose:
 
+```bash
+version: "3.8"
+
+services:
+  fastapi-notification-app:
+    image: fastapi-notification-app
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_FILENAME=notification.log
+      - TIMEZONE=Asia/Seoul
+    volumes:
+      - /home/hennry/GitHub/logs:/logs
+    user: "${UID}:${GID}"
+
+```
 ### 5. Example Usage
 
 You can test the `/notification` endpoint using `curl`:
