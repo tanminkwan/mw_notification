@@ -1,8 +1,3 @@
-아래는 지금까지의 내용을 종합하여 작성한 `README.md`입니다. 이 파일은 프로젝트의 사용 방법과 설정 방법을 설명하는 데 사용할 수 있습니다.
-
-### `README.md`
-
-```markdown
 # FastAPI Notification Logging Service
 
 This is a FastAPI-based service that accepts JSON data via a RESTful POST endpoint (`/notification`) and logs the data to a file. The log file name and timezone can be configured via environment variables.
@@ -102,7 +97,7 @@ The default timezone is set to `Asia/Seoul`. To change the timezone, set the `TI
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
+
 
 ### 설명
 - 이 `README.md` 파일은 프로젝트의 설치 방법, 설정 방법, 실행 방법, 그리고 주요 기능 설명을 포함하고 있습니다.
