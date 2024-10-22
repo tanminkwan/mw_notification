@@ -65,7 +65,7 @@ docker run -d -p 8000:8000 -v /home/hennry/GitHub/logs:/logs -e LOG_FILENAME=not
 When running the Docker container, you can use the --user option to set the container's user to the current user's UID and GID. This will ensure that any files created inside the container (including log files) are owned by the user who started the Docker container :
 
 ```bash
-docker run -d -p 8000:8000 -v /home/hennry/GitHub/logs:/logs -e LOG_FILENAME=noti.log -e TIMEZONE=Asia/Seoul --user $(id -u):$(id -g) fastapi-notification-app
+docker run -d -p 8000:8000 -v /home/hennry/GitHub/logs:/logs -e LOG_FILENAME=noti.log -e TIMEZONE=Asia/Seoul -e LOG_FORMET="%(asctime)s - %(message)s" --user $(id -u):$(id -g) fastapi-notification-app
 ```
 #### Docker compose:
 
@@ -82,6 +82,7 @@ services:
     environment:
       - LOG_FILENAME=notification.log
       - TIMEZONE=Asia/Seoul
+      - LOG_FORMET="%(asctime)s - %(message)s"
     volumes:
       - /home/hennry/GitHub/logs:/logs
     user: "${UID}:${GID}"

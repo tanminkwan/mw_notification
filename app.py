@@ -10,6 +10,7 @@ app = FastAPI()
 # 환경 변수로부터 타임존과 로그 파일 이름 가져오기
 timezone_env = os.getenv("TIMEZONE", "Asia/Seoul")  # 기본값: Asia/Seoul
 log_filename_env = os.getenv("LOG_FILENAME", "notifications.log")
+log_formet_env = os.getenv("LOG_FORMET", "%(message)s")
 
 # 타임존 설정
 seoul_tz = pytz.timezone(timezone_env)
@@ -28,7 +29,7 @@ log_handler.suffix = "%Y%m%d"
 log_handler.extMatch = r"^\d{8}$"
 
 # 로그 포맷 지정
-formatter = logging.Formatter('%(asctime)s - %(message)s')
+formatter = logging.Formatter(log_formet_env)
 formatter.converter = lambda *args: datetime.now(seoul_tz).timetuple()  # 타임존 적용
 log_handler.setFormatter(formatter)
 
@@ -42,7 +43,7 @@ async def log_notification(request: Request):
         # JSON 데이터 받기
         data = await request.json()
         # 로그 파일에 기록
-        logger.info(f"Received data: {data}")
+        logger.info(f"{data}")
         return {"status": "success", "message": "Data logged successfully."}
     except Exception as e:
         logger.error(f"Error logging data: {e}")
